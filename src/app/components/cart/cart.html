@@ -1,0 +1,20 @@
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <div *ngIf="cartService.cartCount() > 0; else emptyCart">
+    <div *ngFor="let item of cartService.cartItems()" class="cart-item">
+      <img [src]="item.thumbnail" [alt]="item.title">
+      <div class="item-details">
+        <p>{{ item.title }}</p>
+        <p>${{ item.price }}</p>
+      </div>
+      <button (click)="cartService.removeFromCart(item.id)" class="btn-danger">Remove</button>
+    </div>
+    <div class="cart-summary">
+      <h3>Total: ${{ cartService.totalPrice() }}</h3>
+      <button (click)="cartService.clearCart()" class="btn-danger">Clear Cart</button>
+    </div>
+  </div>
+  <ng-template #emptyCart>
+    <p>Your cart is empty.</p>
+  </ng-template>
+</div>

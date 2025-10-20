@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/home">Shop</a>
+  </div>
+  <ul class="navbar-nav">
+    <li><a routerLink="/home">Home</a></li>
+    <li>
+      <a routerLink="/cart">
+        <i class="fa-solid fa-cart-shopping"></i><span class="badge">{{ cartService.cartCount() }}</span>
+      </a>
+    </li>
+    <ng-container *ngIf="!authService.isLoggedIn(); else logoutButton">
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/signup">Signup</a></li>
+    </ng-container>
+    <ng-template #logoutButton>
+      <li><button (click)="authService.logout()" class="btn-primary">Logout</button></li>
+    </ng-template>
+  </ul>
+</nav>

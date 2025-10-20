@@ -1,0 +1,15 @@
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Search for products...">
+</div>
+
+<div *ngIf="loading()" class="spinner-container">
+  <img src="assets/spinner.gif" alt="Loading...">
+</div>
+
+<div *ngIf="!loading() && filteredProducts().length > 0" class="product-grid">
+  <app-product-card *ngFor="let product of filteredProducts()" [product]="product"></app-product-card>
+</div>
+
+<div *ngIf="!loading() && filteredProducts().length === 0">
+  <p>No products found.</p>
+</div>
